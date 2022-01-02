@@ -15,7 +15,9 @@
 </head>
 <body>
     <x-navbar></x-navbar>
-    {{ $slot }}
+    <div class="pt-4">
+        {{ $slot  }}
+    </div>
     <script src="/js/bootstrap.min.css"></script>
 </body>
 </html>
