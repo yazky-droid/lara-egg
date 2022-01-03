@@ -23,11 +23,11 @@ class TaskController extends Controller
         ]);
         return back();
     }
-    public function edit($id)
+    public function edit(Task $task)
     {
 
         // $task = Task::where('id', $id)->first();
-        $task = Task::find($id); //find id sama dengan where id
+        // $task = Task::find($id); //find id sama dengan where id
         return view('tasks.edit', ['task' => $task]);
     }
     public function update(Request $request, $id)
@@ -35,9 +35,9 @@ class TaskController extends Controller
         Task::find($id)->update(['list' => $request->list]);
         return redirect('tasks');
     }
-    public function destroy($id)
+    public function destroy($task)
     {
-        Task::find($id)->delete();
+        Task::find($task)->delete();
         return back();
     }
 }

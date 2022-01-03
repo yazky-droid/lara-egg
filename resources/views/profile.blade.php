@@ -5,5 +5,5 @@ Lorem ipsum dolor sit <strong>amet</strong> consectetur adipisicing elit. Doloru
 @endsection --}}
 
 <x-app-layout title="Profile Page">
-    <h1>{{ $name ?? 'Profile' }}</h1>
+    <h1>{{ $user->name }}</h1>
 </x-app-layout>
