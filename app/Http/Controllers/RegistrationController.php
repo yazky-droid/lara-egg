@@ -38,10 +38,13 @@ class RegistrationController extends Controller
     {
         request()->validate([
             'name' => ['required', 'string', 'min:3'],
-            'username' => ['required', 'alpha_num', 'min:5','max:25'],
-            'email' => ['required', 'email'],
+            'username' => ['required','unique:users,username','alpha_num', 'min:5','max:25'],
+            'email' => ['required', 'unique:users', 'email'],
             'password' => ['required', 'min:8'],
         ]);
+        // untuk membuat unique harus sebutin table sama fieldna, jadi kalo aya bisa kecek email atau anu unique na udah da di field yang ada di database
+        // User::where('email', $request->email)->orWhere('username', $request->username)->first(); // untuk jadi unique
+
         User::create([
             'email' => $request->email,
             'name' => $request->name,
