@@ -17,19 +17,16 @@
                             @enderror, jadi maksudnya nampilin error message
                             terus bootstrapnya pake class is-invalid sama kelas invalid-feedback cara pakenya dibawah
                             kaya kalo @error('list') kasih is-invalid di classnya--}}
-                        <input type="text" name="list" class="form-control @error('list') is-invalid @enderror me-2" placeholder="The name of the task">
+                        {{-- <input type="text" name="list" class="form-control @error('list') is-invalid @enderror me-2" placeholder="The name of the task">
                         <span class="invalid-feedback">
                             @error('list')
                             {{ $message }}
                             @enderror
                         </span>
-                    </p>
-                    <p>
-                        <b>Mark : </b>
-                        <label><input type="radio" name="mark" value="True">True</label>
-                        <label><input type="radio" name="mark" value="False">False</label>
-                    </p>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    </p>--}}
+
+                    @include('tasks.__form')
+                    {{-- <button type="submit" class="btn btn-primary">Create</button> --}}
                 </form>
             </div>
         </div>

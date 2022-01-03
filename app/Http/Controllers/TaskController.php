@@ -12,7 +12,9 @@ class TaskController extends Controller
     public function index()
     {
         return view('tasks.index', [
+            'task' => new Task,
             'tasks' => Task::orderBy('id', 'desc')->get(),
+            'submit' => 'Create',
         ]);
     }
 
@@ -31,7 +33,10 @@ class TaskController extends Controller
 
         // $task = Task::where('id', $id)->first();
         // $task = Task::find($id); //find id sama dengan where id
-        return view('tasks.edit', ['task' => $task]);
+        return view('tasks.edit', [
+            'task' => $task,
+            'submit' => 'Update',
+        ]);
     }
     public function update(TaskRequest $request, $id)
     {
