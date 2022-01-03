@@ -17,10 +17,10 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        Task::create([
-            'list' => $request->list,
-            'mark' => $request->mark,
+        $request->validate([
+            'list' => ['required'], //selai required bisa cari validation yang lain di file validation
         ]);
+        Task::create($request->all());
         return back();
     }
     public function edit(Task $task)

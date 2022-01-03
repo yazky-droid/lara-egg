@@ -2,24 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header"><h5>Task</h5></div>
-                    <div class="card-body">
-                        <form action="/tasks" method="post" >
-                            @csrf
-                                <p>
-                                    <input type="text" name="list" class="form-control" placeholder="The name of the task">
-                                </p>
-                                <p>
-                                    <b>Mark : </b>
-                                    <label><input type="radio" name="mark" value="True">True</label>
-                                    <label><input type="radio" name="mark" value="False">False</label>
-                                </p>
-                                <button type="submit" class="btn btn-primary">Create</button>
-                            </form>
-                        </div>
-                    </div>
-            </div>
+            @include('tasks.__create')
         </div>
 
     <ul class="list-group mt-4">
