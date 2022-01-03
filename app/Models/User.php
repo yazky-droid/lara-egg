@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //pubf getRouteKeyName berfungsi untuk mereturn url identifiernya jadi nerima username, atau set identifier gitu
+    // atau bisa diganti menggunakan {identifier : username} pas di routenya
+    // public function getRouteKeyName()
+    // {
+    //     return 'username';
+    // }
 }
