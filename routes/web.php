@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\LoginController;
 use function PHPUnit\Framework\returnSelf;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegistrationController;
@@ -62,3 +63,6 @@ Route::get('users/{user:username}',[UserController::class, 'show']);
 
 Route::get('register', [RegistrationController::class, 'create'])->name('register');
 Route::post('register', [RegistrationController::class, 'store'])->name('register.store');
+
+Route::get('login', [LoginController::class, 'create'])->name('login');
+Route::post('login', [LoginController::class, 'store']); //valid jika ftidak diberi name karena otomatis akan terdeteksi
