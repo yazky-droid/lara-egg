@@ -51,7 +51,11 @@ class RegistrationController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->name),
         ]);
-        return view(users.index);
+        // session ini menerima key sama value di dalam putnya atau di flashnya
+        // session()->put()
+        session()->flash('success', 'Thank you, you are now registered');
+        // return view(users.index);
+        return redirect('/');
     }
 
     /**
