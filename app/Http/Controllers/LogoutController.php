@@ -19,7 +19,6 @@ class LogoutController extends Controller
         Auth::logout();
 
         //Redirect
-
         return redirect(RouteServiceProvider::HOME);
     }
 }
