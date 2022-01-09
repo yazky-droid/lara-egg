@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use function PHPUnit\Framework\returnSelf;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ProfileInformationController;
 
@@ -56,13 +57,20 @@ Route::post('contact', [ContactController::class, 'store']);
 // Route::put('tasks/{id}', [TaskController::class, 'update']);
 // Route::delete('tasks/{id}', [TaskController::class, 'destroy']);
 
-Route::resource('tasks', TaskController::class);
 
 Route::get('users',[UserController::class, 'index']);
 Route::get('users/{user:username}',[UserController::class, 'show']);
 
-Route::get('register', [RegistrationController::class, 'create'])->name('register');
-Route::post('register', [RegistrationController::class, 'store'])->name('register.store');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('tasks', TaskController::class)->middleware('auth');
+    Route::post('logout', LogoutController::class)->name('logout');
+});
 
-Route::get('login', [LoginController::class, 'create'])->name('login');
-Route::post('login', [LoginController::class, 'store']); //valid jika ftidak diberi name karena otomatis akan terdeteksi
+Route::middleware(['guest'])->group(function () {
+
+    Route::get('register', [RegistrationController::class, 'create'])->name('register'); //->middleware('guest') bisa pake gini
+    Route::post('register', [RegistrationController::class, 'store'])->name('register.store');
+
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store']); //valid jika ftidak diberi name karena otomatis akan terdeteksi
+});
