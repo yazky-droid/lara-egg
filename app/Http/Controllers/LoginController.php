@@ -17,19 +17,23 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+    $attributes = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
-        $user = User::whereEmail($request->email)->first();
-        if ($user) {
-            if (Hash::check($request->password, $user->password)) {
-                Auth::login($user);
-
+        // (Auth::attempt(['email' => $request->email,'password' => $request->password,]))
+        if (Auth::attempt($attributes)) { //auth attempt sama dengan memvalidasi login kaya kode if else dibawah... kenapa pake $attributes karena $attributes juga mengandung array email dan password yang sesuai request.
                 return redirect('/')->with('success', 'You are now logged in');
-            }
         }
+
+        // $user = User::whereEmail($request->email)->first();
+        // if ($user) {
+        //     if (Hash::check($request->password, $user->password)) {
+        //         Auth::login($user);
+
+        //         return redirect('/')->with('success', 'You are now logged in');
+        //     }
+        // }
         throw ValidationException::withMessages([
             'email' => 'Your email is not match with any email in our records.'
         ]);
